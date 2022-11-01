@@ -1,0 +1,55 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-area="Admin" asp-controller="Event" asp-action="Update" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="@Model.ImageFile">Image</label>
+                    <input class="form-control" asp-for="@Model.ImageFile">
+                    <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Title">Title</label>
+                    <input class="form-control" asp-for="@Model.Title">
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Content">Content</label>
+                    <textarea id="editor" class="form-control" asp-for="@Model.Content"></textarea>
+                    <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Address">Address</label>
+                    <textarea id="editor" class="form-control" asp-for="@Model.Address"></textarea>
+                    <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.IframeLink">IframeLink</label>
+                    <textarea id="editor" class="form-control" asp-for="@Model.IframeLink"></textarea>
+                    <span asp-validation-for="@Model.IframeLink" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.TagEventId" class="selectTag">Select Tag:</label>
+                    <select class="js-example-basic-multiple" style="width:100%" multiple="multiple" asp-for="@Model.TagEventId">
+                        @foreach (var tag in ViewBag.TagEvent)
+                        {
+                            <option value="@tag.Id">@tag.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <input type="hidden" asp-for="@Model.Image"  />
+                <input type="hidden" asp-for="@Model.Id"  />
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-dark" asp-area="admin" asp-controller="Event" asp-action="Index">Back to List</button>
+
+            </form>
+        </div>
+    </div>

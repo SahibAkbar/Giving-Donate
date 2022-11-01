@@ -1,0 +1,22 @@
+﻿@model FAQ
+@{ ViewData["Title"] = "Create";
+                Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+<form asp-area="Admin" asp-controller="FAQ" asp-action="Create" method="post" enctype="multipart/form-data">
+    @{ if (TempData["BlogError3"] != null)
+        {
+<p style="font-size: 20px !important;" class="alert alert-danger">@TempData["BlogError3"]</p> TempData["BlogError3"] = null;
+} }
+    <div class="mb-3">
+        <label asp-for="@Model.Title" class="form-label">Title</label>
+        <input class="form-control" asp-for="@Model.Title">
+        <span class="text-danger" asp-validation-for="@Model.Title"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.Content" class="form-label">Content</label>
+        <textarea class="form-control ckeditor" asp-for="@Model.Content"></textarea>
+        <span class="text-danger" asp-validation-for="@Model.Content"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-dark" asp-area="admin" asp-controller="FAQ" asp-action="Index">Back to List</button>
+</form>
+

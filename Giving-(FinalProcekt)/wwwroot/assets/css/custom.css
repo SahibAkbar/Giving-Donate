@@ -1,0 +1,168 @@
+﻿
+.loading {
+    position: fixed;
+    top: 0;
+    background-color: #7a0000;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    text-align: center;
+}
+
+    .loading .hereket {
+        width: 4em;
+        height: 4em;
+        -webkit-transform: perspective(20em) rotateX(-24deg) rotateY(20deg) rotateZ(30deg);
+        transform: perspective(20em) rotateX(-24deg) rotateY(20deg) rotateZ(30deg);
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 45%;
+        -webkit-transform: translateY(-45%);
+        transform: translateY(-45%);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .loading .hereket::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            right: 0;
+            bottom: 0;
+            border: 2px dotted #fff;
+            margin: -15px;
+        }
+
+        .loading .hereket .top {
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-animation: hereket 6s linear infinite;
+            animation: hereket 6s linear infinite;
+        }
+
+            .loading .hereket .top .disk {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                border: .3em dotted #fff;
+            }
+
+                .loading .hereket .top .disk:nth-child(1) {
+                    -webkit-animation: disk1 12s linear infinite;
+                    animation: disk1 12s linear infinite;
+                }
+
+                .loading .hereket .top .disk:nth-child(2) {
+                    -webkit-animation: disk2 12s linear infinite;
+                    animation: disk2 12s linear infinite;
+                }
+
+                .loading .hereket .top .disk:nth-child(3) {
+                    -webkit-animation: disk3 12s linear infinite;
+                    animation: disk3 12s linear infinite;
+                }
+
+@-webkit-keyframes hereket {
+    0% {
+        -webkit-transform: rotateX(360deg) rotateY(0deg);
+        transform: rotateX(360deg) rotateY(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg) rotateY(360deg);
+        transform: rotateX(0deg) rotateY(360deg);
+    }
+}
+
+@keyframes hereket {
+    0% {
+        -webkit-transform: rotateX(360deg) rotateY(0deg);
+        transform: rotateX(360deg) rotateY(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateX(0deg) rotateY(360deg);
+        transform: rotateX(0deg) rotateY(360deg);
+    }
+}
+
+@-webkit-keyframes disk1 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes disk1 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes disk2 {
+    0% {
+        -webkit-transform: rotateX(90deg) rotateZ(0deg);
+        transform: rotateX(90deg) rotateZ(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateX(90deg) rotateZ(360deg);
+        transform: rotateX(90deg) rotateZ(360deg);
+    }
+}
+
+@keyframes disk2 {
+    0% {
+        -webkit-transform: rotateX(90deg) rotateZ(0deg);
+        transform: rotateX(90deg) rotateZ(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateX(90deg) rotateZ(360deg);
+        transform: rotateX(90deg) rotateZ(360deg);
+    }
+}
+
+@-webkit-keyframes disk3 {
+    0% {
+        -webkit-transform: rotateY(90deg) rotateZ(0deg);
+        transform: rotateY(90deg) rotateZ(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(90deg) rotateZ(360deg);
+        transform: rotateY(90deg) rotateZ(360deg);
+    }
+}
+
+@keyframes disk3 {
+    0% {
+        -webkit-transform: rotateY(90deg) rotateZ(0deg);
+        transform: rotateY(90deg) rotateZ(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotateY(90deg) rotateZ(360deg);
+        transform: rotateY(90deg) rotateZ(360deg);
+    }
+}

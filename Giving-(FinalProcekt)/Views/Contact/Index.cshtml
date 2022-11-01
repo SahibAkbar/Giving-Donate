@@ -1,0 +1,159 @@
+﻿@*@inject IHttpContextAccessor _httpContext*@
+@model VmContact
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Banner start -->
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="Contact" asp-action="Index">Contact</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner End -->
+<!-- Contact section start -->
+<section>
+    <div class="mapss">
+        <div class="container-fluid" style="padding: 0 0;">
+            <div class="row">
+                <div class="event-map">
+                    <div class="no-scroll-layer">
+                        <iframe src="@Model.Setting.IframeLink" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="contact-main">
+                        <div class="contact-content">
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-3 col-md-3">
+                                        <div class="inner u-fade-type-left js-scroll-trigger">
+                                            <div class="heading">
+                                                <h3>Contact Us, cause</h3>
+                                            </div>
+                                            <div class="text">
+                                                <h2>
+                                                    <span>
+                                                        They <br><b>NEED</b><br>your<br><b><em>HELP...</em></b>
+                                                    </span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6 col-md-6">
+                                        <div class="media">
+                                            <div class="single-image">
+                                                <div class="figure">
+                                                    <div class="image u-fade-type-down js-scroll-trigger">
+                                                        <img src="~/assets/img/bg/map-qarabala.png" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-3 col-md-3">
+                                        <div class="info-cnt u-fade-type-right js-scroll-trigger">
+                                            <div class="heading">
+                                                <h3>Contact info:</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="element">
+                                                    <div class="contact-info">
+                                                        <div class="ct-info">
+                                                            <i class="fas fa-phone-alt"></i>
+                                                            <div class="info">
+                                                                <span class="one">@Model.Setting.Phone</span>
+                                                                <span class="two">Call us</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ct-info">
+                                                            <i class="fas fa-envelope"></i>
+                                                            <div class="info">
+                                                                <span class="one">
+                                                                    <a href="mailto:info@giving.com">@Model.Setting.Email</a>
+                                                                </span>
+                                                                <span class="two">Email us</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ct-info">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                            <div class="info">
+                                                                <span class="one">@Model.Setting.Adress</span>
+                                                                <span class="two">Address</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-contact">
+                                @{
+                                    if (TempData["MessageError"] != null)
+                                    {
+                                        <p style="font-size: 20px !important;" class="alert alert-danger text-danger text-center">@TempData["MessageError"]</p>
+                                        TempData["MessageError"] = null;
+                                    }
+                                    if (TempData["MessageSuccess"] != null)
+                                    {
+                                        <p style="font-size: 20px !important; background-color: #abd47459 !important;" class="alert alert-success text-success text-center">@TempData["MessageSuccess"]</p>
+                                        TempData["MessageSuccess"] = null;
+                                    }
+                                }
+                                <div class="title">
+                                    <h2>If you wondered volunteering,<br> please fulfill</h2>
+                                </div>
+                                <div class="frm">
+                                    <form asp-controller="Contact" asp-action="SendMessage" method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" asp-for="@Model.Contact.Name">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email" asp-for="@Model.Contact.Email">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="phone" asp-for="@Model.Contact.Phone">
+                                            </div>
+                                            <div class="col-md-12 mb-3">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="message" cols="40" rows="10" asp-for="@Model.Contact.Message"></textarea>
+                                            </div>
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <input class="btn btn-primary" type="submit" value="Submit">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact section end -->

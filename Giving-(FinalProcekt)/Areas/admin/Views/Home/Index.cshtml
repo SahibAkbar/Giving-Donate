@@ -1,0 +1,86 @@
+﻿@model VmHome
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card gradient-1">
+                <div class="card-body">
+                    <a asp-area="admin" asp-controller="Event" asp-action="Index">
+                        <h3 class="card-title text-white">Events List</h3>
+                    </a>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">@ViewBag.EventCount</h2>
+                        <p class="text-white mb-0">@DateTime.Now.ToString("MMM-dd, yyyy")</p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fas fa-calendar-plus"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card gradient-2">
+                <div class="card-body">
+                    <a asp-area="admin" asp-controller="Donate" asp-action="Index">
+                        <h3 class="card-title text-white">Donate People</h3>
+                    </a>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">@ViewBag.DonateCount</h2>
+                        <p class="text-white mb-0">@DateTime.Now.ToString("MMM-dd, yyyy")</p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card gradient-3">
+                <div class="card-body">
+                    <a asp-area="admin" asp-controller="Volunteer" asp-action="Index">
+                        <h3 class="card-title text-white">Team List</h3>
+                    </a>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">@ViewBag.VolunteerCount</h2>
+                        <p class="text-white mb-0">@DateTime.Now.ToString("MMM-dd, yyyy")</p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card gradient-4" style="background-image: linear-gradient(230deg, #a00303, #816aff);">
+                <div class="card-body">
+                    <a asp-area="admin" asp-controller="Cause" asp-action="Index">
+                        <h3 class="card-title text-white">Causes List</h3>
+                    </a>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">@ViewBag.CauseCount</h2>
+                        <p class="text-white mb-0">@DateTime.Now.ToString("MMM-dd, yyyy")</p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fas fa-ribbon"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model.Volunteers)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body" style="height:400px;">
+                        <div class="text-center">
+                            <a asp-area="admin" asp-controller="Volunteer" asp-action="Detail" asp-route-id="@item.Id">
+                                <img src="~/Uploads/@item.Image" style="max-width:100%;border-radius:0;height:100%;" alt="">
+                                <h5 class="mt-3 mb-1">@item.Name</h5>
+                            </a>
+                            <p class="m-0">@item.Position</p>
+                            <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+

@@ -1,0 +1,320 @@
+﻿@model Cause
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row my-4">
+        @{ if (TempData["CommentError2"] != null)
+            {
+                <p style="font-size: 20px !important;" class="alert alert-danger col-lg-12 text-center">@TempData["CommentError2"]</p> TempData["CommentError2"] = null;
+            } }
+        <div class="col-12">
+            <div class="card text-center">
+                <div class="card-header">
+                    <span class="text-linkedin" style="font-size: 22px !important; font-weight: 600 !important;">@Model.Title</span>
+                </div>
+                <div>
+                    @*<div class="mt-3">
+                        <p><span class="text-linkedin" style="font-size: 20px !important; font-weight: 600 !important;">Features</span></p>
+                        @{ foreach (var feature in Model.RestourantFeatureToRestourants)
+                            {
+                                <span style="color: white !important; font-size: 14px !important; font-weight: 600 !important;" class="badge badge-pill badge-info col-lg-auto">@feature.RestourantFeature.Name</span> } }
+                    </div>*@
+                    <div style="width: 500px !important; height: auto !important; margin-left: auto !important; margin-right: auto !important;">
+                        <img style="width: 100% !important;height: auto !important;object-fit: contain;" src="~/Uploads/@Model.Image" class="card-img-top pt-4" alt="Image">
+                    </div>
+                    @*<p class="mt-4 pl-5" style=" text-align: left !important;"><span class="alert alert-warning" style="font-size: 22px !important; font-weight: 600 !important; border-radius: 10px !important; margin-left: 255px !important;">Comments - @Model.RestourantComments.Count</span></p>*@
+                    @*<div class="mt-3">
+                        <p><span class="text-linkedin" style="font-size: 20px !important; font-weight: 600 !important;">Tags</span></p>
+                        @{ foreach (var tag in Model.RestourantTagToRestourants)
+                            {
+                                <span style="color: white !important; font-size: 14px !important; font-weight: 600 !important;" class="badge badge-pill badge-warning col-lg-auto">@tag.RestourantTag.Name</span> } }
+                    </div>*@
+                    <div>
+                        <p class="py-3 text-facebook" style="font-size: 18px !important; font-weight: 600 !important;"> <span class="text-body" style="font-size: 22px !important;">Address</span>: @Model.Address</p>
+                    </div>
+                    <div>
+                        <p class="py-3 text-facebook" style="font-size: 18px !important; font-weight: 600 !important;"> <span class="text-body" style="font-size: 22px !important;">Created Date</span>: @Model.CreatedDate</p>
+                    </div>
+                    <div>
+                        <p class="py-3 text-facebook" style="font-size: 18px !important; font-weight: 600 !important;"> <span class="text-body" style="font-size: 22px !important;">CauseNeed</span>: @Model.CauseNeed</p>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <p class="alert alert-light border card-text shadow-sm text-facebook" style="font-size: 17px !important; font-weight: 500 !important;">@Model.Content</p>
+                </div>
+                @*<div class="card-footer text-muted">
+                    @(Model.OpeningTime.ToString("HH:mm") +"-"+ Model.ClosingTime.ToString("HH:mm"))
+                </div>*@
+            </div>
+        </div>
+
+
+
+        @*<div class="col-lg-12 grid-margin stretch-card mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">Reservations</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th class="tableTrCustom">
+                                        #
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Full Name
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Identity
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Phone
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Guest
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Reservation Date
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Created Date
+                                    </th>
+                                    <th class="tableTrCustom">
+                                        Edit
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int counter2 = 0;
+                                    foreach (var r in ViewBag.Dont)
+                                    {
+                                        counter2++;
+                                        <tr>
+                                            <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                @counter2
+                                            </td>
+                                            <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                @r.FName @r.Id
+                                            </td>
+                                        </tr>
+                                        TempData["IdForAction2"] = Model.Id;
+
+                                    } }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+
+        @*<div class="col-lg-12 d-flex justify-content-around mb-3 mt-5">
+                   <div class="col-lg-2 text-center">
+                       <small class="text-uppercase font-weight-bold" style="font-size: 20px !important;">Reception:</small>
+                       <br />
+                       <small class="text-linkedin" style="font-size: 15px;">@Model.ReceptionPhone</small>
+                   </div>
+                   <div class="col-lg-2 p-0 text-center">
+                       <small class="text-uppercase font-weight-bold" style="font-size: 20px !important;">For Complaints:</small>
+                       <br />
+                       <small class="text-linkedin" style="font-size: 15px;">@Model.CompaintPhone</small>
+                   </div>
+                   <div class="col-lg-2 text-center">
+                       <small class="text-uppercase font-weight-bold" style="font-size: 20px !important;">Support:</small>
+                       <br />
+                       <small class="text-linkedin" style="font-size: 15px;">@Model.SupportPhone</small>
+                   </div>
+
+               </div>
+               <div class="bg-light col-lg-12 d-flex justify-content-center shadow-sm my-5" style=" border-radius: 10px !important;">
+                   <div class="col-lg-10 my-5">
+                       <h2 class="mb-2 text-center text-facebook">Location</h2>
+                       <p class="description text-center">@Model.LocationDesc</p>
+                       <div class="d-flex justify-content-center mt-4">
+                           <iframe src="@Model.LocationOnMap" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-12" style="border-radius: 10px !important;">
+                   <div>
+                       <div class="pricing-list-container">
+                           <ul class="bg-light pl-0 py-5 shadow-sm">
+                               <p class="mb-5 text-center text-linkedin" style=" font-size: 24px !important; font-weight: 600 !important; ">Restourant Menu</p>
+                               @{ foreach (var m in Model.MenuToRestourants)
+                                   {
+                                       <li class="align-items-center d-flex justify-content-around">
+                                           <div class="col-lg-6">
+                                               <h5>@m.Menu.MenuName</h5>
+                                               <p>@m.Ingrediend</p>
+                                           </div>
+                                           <span class="col-lg-2">$@m.Price</span>
+                                       </li>
+        } }
+                           </ul>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-12 my-5" style="display: flex; flex-direction: column; align-items: center; }">
+                   <p><span style="font-size: 20px !important; font-weight: 500 !important;" class="text-linkedin">Restourant Manager</span></p>
+                   <div class="card" style="width: 18rem;">
+                       <img src="~/assets/images/@Model.ManagerImage" class="card-img-top" alt="...">
+                       <div class="card-body">
+                           <h5 class="card-title text-center">@Model.ManagerName @Model.ManagerSurName</h5>
+                           <span>Email - @Model.ManagerEmail</span>
+                           <br />
+                           <span>Phone - @Model.ManagerPhone</span>
+                           <br />
+                           <span>Website - @Model.ManagerWebSite</span>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-12 grid-margin stretch-card mb-5">
+                   <div class="card">
+                       <div class="card-body">
+                           <h4 class="card-title text-center" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">Reservations</h4>
+                           <div class="table-responsive">
+                               <table class="table table-bordered text-center">
+                                   <thead>
+                                       <tr>
+                                           <th class="tableTrCustom">
+                                               #
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Full Name
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Identity
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Phone
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Guest
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Reservation Date
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Created Date
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Edit
+                                           </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       @{ int counter2 = 0;
+                                           foreach (var r in Model.Reservations)
+                                           {
+                                               counter2++;
+                                               <tr>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @counter2
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.Name @r.Surname
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.IdentityNo
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.Phone
+                                                   </td>
+                                                   <td style="width: 250px !important; font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.Guest.GuestCount
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.ReservationTime.ToString("d.MMM.yyyy")
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @r.CreatedDate.ToString("d.MMM.yyyy")
+                                                   </td>
+                                                   <td>
+                                                       <a class="w-100 btn-sm btn btn-danger" asp-route-Id="@r.Id" asp-area="Admin" asp-controller="Restourant" asp-action="DeleteRes" onclick="return confirm('Are you sure?')">Delete</a>
+                                                   </td>
+                                               </tr>
+        TempData["IdForAction2"] = Model.Id;
+
+                                           } }
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-lg-12 grid-margin stretch-card mb-5">
+                   <div class="card">
+                       <div class="card-body">
+                           <h4 class="card-title text-center" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">Comments</h4>
+                           <div class="table-responsive">
+                               <table class="table table-bordered text-center">
+                                   <thead>
+                                       <tr>
+                                           <th class="tableTrCustom">
+                                               #
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Full Name
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Email
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Subject
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Content
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Created Date
+                                           </th>
+                                           <th class="tableTrCustom">
+                                               Edit
+                                           </th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       @{ int counter = 0;
+                                           foreach (var item in Model.RestourantComments)
+                                           {
+                                               counter++;
+                                               <tr>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @counter2
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @item.CommentPost.FullName
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @item.CommentPost.Email
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @item.CommentPost.Subject
+                                                   </td>
+                                                   <td style="width: 250px !important; font-size: 18px !important; font-weight: 500 !important;">
+                                                       @(item.Content.Length > 50 ? item.Content.Substring(0, 50) + "..." : item.Content)
+                                                   </td>
+                                                   <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                                       @item.CreatedDate.ToString("d.MM.yyyy")
+                                                   </td>
+                                                   <td>
+                                                       <a class="w-100 btn-sm btn btn-danger" asp-route-Id="@item.Id" asp-area="Admin" asp-controller="Restourant" asp-action="DeleteCom" onclick="return confirm('Are you sure?')">Delete</a>
+                                                   </td>
+                                               </tr>
+        TempData["RestourantId"] = Model.Id;
+
+                                           } }
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+               </div>*@
+    </div>
+</div>
+

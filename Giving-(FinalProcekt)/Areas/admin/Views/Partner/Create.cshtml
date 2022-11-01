@@ -1,0 +1,28 @@
+﻿@model Partner
+@{ ViewData["Title"] = "Create";
+                Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+@{
+    if (TempData["Erroor"] != null)
+    {
+        <div class="col-lg-3 alert alert-danger">
+            <p>@(TempData["Erroor"]as string)</p>
+        </div>
+        TempData["Erroor"] = null;
+    }
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-area="Admin" asp-controller="Partner" asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="@Model.ImageFile">Image</label>
+                    <input class="form-control" asp-for="@Model.ImageFile">
+                    <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-dark" asp-area="admin" asp-controller="Partner" asp-action="Index">Back to List</button>
+
+            </form>
+        </div>
+    </div>
+</div>

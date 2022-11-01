@@ -1,0 +1,302 @@
+﻿@{
+
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+
+}
+@model VmLayout
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="~/assets/css/retinaSlider.css">
+    <link rel="stylesheet" href="~/assets/dist/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/assets/css/common.css">
+    <link rel="stylesheet" href="~/assets/css/reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/assets/css/custom.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/assets/img/CCI-Favicon.png">
+    <title>Giving/Home</title>
+</head>
+
+<body>
+    <div class="loading">
+        <div class="hereket">
+            <div class="top">
+                <div class="disk"></div>
+                <div class="disk"></div>
+                <div class="disk"></div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <!-- Topbar Start -->
+        <div class="topbars">
+            <div class="container">
+                <div class="topbar-left">
+                    <div class="topbar-social">
+                        <ul class="social">
+
+                            @foreach (var item in Model.Socials)
+                            {
+                                <li class="facebook">
+                                    <a href="https://@item.Link/">
+                                        <i class="@item.Icon"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <ul>
+                        <li class="email">
+                            <i class="fas fa-envelope-square"></i>
+                            <span>
+                                <a style="color: #666;" href="mailto:@Model.Setting.Email">@Model.Setting.Email</a>
+                            </span>
+                            <small>Our email</small>
+                        </li>
+                        <li class="phone">
+                            <i class="fas fa-phone-square-alt"></i>
+                            <span>
+                                <a style="color: #666;" href="tel:@Model.Setting.Phone">@Model.Setting.Phone</a>
+                            </span>
+                            <small>9:00 A.M. - 5:00 P.M.</small>
+                        </li>
+                        <li class="donate">
+                            <a asp-controller="Causes" asp-action="Index" class="btn-donate">Donate</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+        <!-- Navbar Start -->
+        <div class="navbars">
+            <div class="main-navbar">
+                <div class="container">
+                    <div class="headerlogo">
+                        <div class="mainlogo">
+                            <a asp-controller="Home" asp-action="Index">
+                                <img src="~/Uploads/@Model.Setting.Logo" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="headernav">
+                        <div class="navlist">
+                            <div class="menu-container">
+                                <ul>
+                                    <li>
+                                        <a style="@(controller=="Home"?"color: #f83730!important;":"");color:white;" class="color1" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="About"?"color: #f83730;":"")" class="color2" asp-controller="About" asp-action="Index">About</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="Team"?"color: #f83730;":"")" class="color3" asp-controller="Team" asp-action="Index">Team</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="Causes"?"color: #f83730;":"")" class="color4" asp-controller="Causes" asp-action="Index">Causes</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="Event"?"color: #f83730;":"")" class="color5" asp-controller="Event" asp-action="Index">Event</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="FAQ"?"color: #f83730;":"")" class="color6" asp-controller="FAQ" asp-action="Index">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a style="@(controller=="Contact"?"color: #f83730;":"")" class="color7" asp-controller="Contact" asp-action="Index">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        @*<div class="search-wrap">
+                                <div class="header-search">
+                                    <a href="#">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="navbar-tools">
+                                <div class="batn">
+                                    <a href="#">
+                                        <i class="fas fa-bars"></i>
+                                    </a>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar End -->
+    </header>
+    <main>
+
+        @RenderBody()
+        <!-- Subscribe Start -->
+        <section>
+            <div class="subscribe">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="title">
+                                <h3>Subscribe for <b><span>NEWS</span>LETTER</b></h3>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <form asp-controller="Home" asp-action="Subscribe" id="subscribies" method="post">
+                                @*<div asp-validation-summary="All" class="text-danger"></div>*@
+                                <div class="subscribe-form" style="position:relative;">
+                                    <div class="mail-chip">
+                                        <input type="email" class="form-control" name="email" placeholder="Your email" required="">
+                                    </div>
+                                    <a href="#">
+                                        <div class="mail-btn">
+                                            <input type="submit" id="submitBtn" class="cms-button" value="Subscribe">
+                                        </div>
+
+                                        <br />
+
+                                    </a>
+                                    <div class="alert alert-success" style="display: none; position: absolute; bottom: -58px; right: 111px;"></div>
+                                    <div class="alert alert-warning" style="display: none; position: absolute; bottom: -58px; right: 111px;"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Subscribe End -->
+    </main>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 one u-fade-type-up js-scroll-trigger">
+                        <div class="content">
+                            <div class="giving-img">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <img src="~/Uploads/@Model.Setting.Logo" alt="">
+                                </a>
+                                <p class="desc">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis um voluptatum deleniti atque orrupti quos </p>
+                            </div>
+                        </div>
+                        <div class="contact">
+                            <div class="textwidget">
+                                <ul class="add-wrap">
+                                    <li>
+                                        <i class="fas fa-search"></i> address:
+                                        <span>@Model.Setting.Adress</span>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-envelope"></i> email:
+                                        <a href="mailto:@Model.Setting.Email">@Model.Setting.Email</a>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-phone"></i> phone:
+                                        <a href="tel:@Model.Setting.Phone">@Model.Setting.Phone</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="social">
+                            <div class="social-wrap">
+                                <ul class="social-inner">
+                                    @foreach (var item in Model.Socials)
+                                    {
+                                        <li class="facebook">
+                                            <a href="https://@item.Link/">
+                                                <i class="@item.Icon"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                    <div class="col-md-4 u-fade-type-down js-scroll-trigger">
+                        <div class="footer-faceimg">
+                            <h3 class="wg-title">our happy faces</h3>
+                            <ul class="images">
+                                @foreach (var item in Model.HappyFaces)
+                                {
+                                    <li>
+                                        <img src="~/Uploads/@item.Image" alt="">
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <div class="container">
+                <div class="inner">
+                    <div class="copyrigt-wrap">
+                        <div class="widget">
+                            <p>Copyright 2017. All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="go-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+
+
+
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="~/assets/js/retinaSlider.js"></script>
+    <script src="~/assets/dist/owl.carousel.min.js"></script>
+    <script src="~/assets/js/scriptfade.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+
+
+
+
+    @* Load start*@
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            if ($(".wow").length) {
+                var wow = new WOW({
+                    boxClass: 'wow',
+                    animateClass: 'animated',
+                    offset: 20,
+                    mobile: true,
+                    live: true,
+                });
+                wow.init();
+            }
+        });
+        $(window).on('load', function () {
+            $('.loading').fadeOut();
+        });
+    </script>
+
+    @*Load end*@
+
+</body>
+
+</html>

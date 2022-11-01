@@ -1,0 +1,118 @@
+﻿@model VmVolunteer
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Banner start -->
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="Team" asp-action="Detail">Team Detail</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner End -->
+<!-- Team Details Start -->
+<section>
+    <div class="contentdt">
+        <div class="container">
+            <div class="row">
+                <div class="image col-sm-4 col-md-4">
+                    <img src="~/Uploads/@Model.Volunteer.Image" style="max-width:100%;height:auto;object-fit:cover;" alt="">
+                </div>
+                <div class="context col-sm-8 col-md-8">
+                    <h3 class="vlt-title">@Model.Volunteer.Name</h3>
+                    <span class="vlt-role">@Model.Volunteer.Position</span>
+                    <h3 class="bio">Biography</h3>
+                    <div class="vlt-desc">
+                        <p>@Model.Volunteer.Description</p>
+                    </div>
+                    <div class="vlt-exp">
+                        Experience in volunteering:
+                        <span class="text">@Model.Volunteer.Experience years</span>
+                    </div>
+                    @*<ul class="vlt-social">
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>*@
+                </div>
+                <div class="u-fade-type-down js-scroll-trigger">
+                    <div class="row" style="padding-left: 100px;">
+                        <div class="plugns col-md-4">
+                            <h3>01. Donator</h3>
+                            <p>@Model.Volunteer.DonaterTitle</p>
+                            <div class="vlt-circle-wrap">
+                                <div class="vlt-circle-inner">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="vlt-info">
+                                    <span class="text">$ @Model.Volunteer.DonaterCount</span>
+                                    <span>Donation made</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plugns col-md-4">
+                            <h3>01. Volunteer</h3>
+                            <p>@Model.Volunteer.VoluteerTitle </p>
+                            <div class="vlt-circle-wrap">
+                                <div class="vlt-circle-inner">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="vlt-info">
+                                    <span class="text">@Model.Volunteer.VoluteerCount</span>
+                                    <span>People volunteered</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plugns col-md-4">
+                            <h3>01. Adopter</h3>
+                            <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis um voluptatum deleniti atque orrupti quos </p> -->
+                            <div class="vlt-circle-wrap">
+                                <div class="vlt-circle-inner">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="vlt-info">
+                                    <span class="text">5</span>
+                                    <span>Children adopted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Details End -->

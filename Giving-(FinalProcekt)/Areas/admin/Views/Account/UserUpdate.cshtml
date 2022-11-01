@@ -1,0 +1,63 @@
+﻿@model CustomUser
+@{
+    ViewData["Title"] = "RoleCreate";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+        
+    <form class="border justify-content-center my-5 p-4 row" asp-area="Admin" asp-controller="Account" asp-action="UserUpdate" method="post" enctype="multipart/form-data">
+        <h4 class=" mb-5 card-title text-center col-lg-10" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">Update User</h4>
+        @{
+            if (TempData["UserError2"] != null)
+            {
+                <p style="font-size: 20px !important;" class="alert alert-danger col-lg-10">@TempData["UserError2"]</p>
+
+                TempData["UserError2"] = null;
+            }
+        }
+        <div class="mb-3 col-lg-5">
+            <label asp-for="@Model.Name" class="form-label">Name</label>
+            <input class="form-control" asp-for="@Model.Name">
+            <span class="text-danger" asp-validation-for="@Model.Name"></span>
+        </div>
+
+        <div class="mb-3 col-lg-5">
+            <label asp-for="@Model.Email" class="form-label">Email</label>
+            <input class="form-control" asp-for="@Model.Email">
+            <span class="text-danger" asp-validation-for="@Model.Email"></span>
+        </div>
+        <div class="mb-3 col-lg-5">
+            <label asp-for="@Model.ImageFile" class="form-label">Choose Profile Picture</label>
+            <input class="form-control" asp-for="@Model.ImageFile">
+            <span class="text-danger" asp-validation-for="@Model.ImageFile"></span>
+        </div>
+
+        <div class="mb-3 col-lg-10">
+            <label asp-for="@Model.RoleId" class="font-weight-bold text-facebook pl-1 form-label">Menu Name</label>
+            <select asp-for="@Model.RoleId" class="form-control form-control-sm form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Open this select Role</option>
+                @{
+                    foreach (var role in ViewBag.Roles)
+                    {
+                        <option value="@role.Id">@role.Name</option>
+                    }
+                }
+            </select>
+            <span style=" font-size: 13px !important; font-weight: 600 !important;" class="text-danger" asp-validation-for="@Model.RoleId"></span>
+        </div>
+
+
+
+        <input type="hidden" asp-for="@Model.Id" />
+        <input type="hidden" asp-for="@Model.RoleId" />
+        <input type="hidden" asp-for="@Model.Image" />
+        <button type="submit" class="btn btn-primary col-lg-4">Update</button>
+    </form>
+        
+    
+</div>
+
+
+

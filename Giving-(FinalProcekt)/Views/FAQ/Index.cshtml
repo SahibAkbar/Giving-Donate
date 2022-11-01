@@ -1,0 +1,151 @@
+﻿@model VmFAQ
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Banner start -->
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="About" asp-action="Index">FAQ</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner End -->
+<!-- Accardion start -->
+<section>
+    <div class="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="header">
+                        <h3>FREQUENTLY ASKED <em>QUESTIONS</em></h3>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                    </div>
+                    <div class="main">
+                        <!-- <div class="tab-btn">
+                            <ul>
+                                <li class="left" id="tab1">
+                                    <a id="one" href="#"><span>Tab 1</span></a>
+                                </li>
+                                <li class="right"  id="tab2">
+                                    <a id="two" href="#"><span>Tab 2</span></a>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <div class="accardion-content">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="section-accordion">
+                                    <ul class="accordion">
+                                        <li class="accordion-item">
+                                            <a class="accordion-title" href="">
+                                                What access do I have on the free plan?
+                                            </a>
+                                            <p class="accordion-content">
+                                                <img src="assets/img/Event/1.jpg" alt="">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Nullam tortor nunc, bibendum vitae semper a, volutpat eget massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla, orci sit amet posuere auctor, orci eros pellentesque odio, nec pellentesque erat ligula nec massa. Aenean consequat lorem ut felis ullamcorper posuere gravida tellus faucibus. Maecenas dolor elit, pulvinar eu vehicula eu, consequat et lacus.
+                                                Duis et purus ipsum. In auctor mattis ipsum id molestie. Donec risus nulla, fringilla a rhoncus vitae, semper a massa. Vivamus ullamcorper, enim sit amet consequat laoreet, tortor tortor dictum urna, ut egestas urna ipsum nec libero. Nulla justo leo, molestie vel tempor nec, egestas at massa. Aenean pulvinar, felis
+                                            </p>
+                                        </li>
+                                        <li class="accordion-item">
+                                            <a class="accordion-title" href="">
+                                                What access do I have on a free trial?
+                                            </a>
+                                            <p class="accordion-content">
+                                                <img src="assets/img/Event/2.jpg" alt="">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                when an
+                                                unknown printer took a galley of type and scrambled it to make a type
+                                                specimen
+                                                book.
+                                            </p>
+                                        </li>
+                                        <li class="accordion-item">
+                                            <a class="accordion-title" href="">
+                                                Does the price go up as my team gets larger?
+                                            </a>
+                                            <p class="accordion-content">
+                                                <img src="assets/img/Event/3.jpg" alt="">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem
+                                                Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                when an
+                                                unknown printer took a galley of type and scrambled it to make a type
+                                                specimen
+                                                book.
+                                            </p>
+                                        </li>
+                                        <!-- <div class="section-accordion-private">
+                                            <ul class="accordion">
+                                                <li class="accordion-item">
+                                                    <a class="accordion-title" href="">
+                                                        What access do I have on the free plan?
+                                                    </a>
+                                                    <p class="accordion-content">
+                                                        <img src="assets/img/Event/1.jpg" alt="">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Nullam tortor nunc, bibendum vitae semper a, volutpat eget massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla, orci sit amet posuere auctor, orci eros pellentesque odio, nec pellentesque erat ligula nec massa. Aenean consequat lorem ut felis ullamcorper posuere gravida tellus faucibus. Maecenas dolor elit, pulvinar eu vehicula eu, consequat et lacus.
+                                                        Duis et purus ipsum. In auctor mattis ipsum id molestie. Donec risus nulla, fringilla a rhoncus vitae, semper a massa. Vivamus ullamcorper, enim sit amet consequat laoreet, tortor tortor dictum urna, ut egestas urna ipsum nec libero. Nulla justo leo, molestie vel tempor nec, egestas at massa. Aenean pulvinar, felis
+                                                    </p>
+                                                </li>
+                                                <li class="accordion-item">
+                                                    <a class="accordion-title" href="">
+                                                        What access do I have on a free trial?
+                                                    </a>
+                                                    <p class="accordion-content">
+                                                        <img src="assets/img/Event/2.jpg" alt="">
+                                                        Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                        industry. Lorem
+                                                        Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                        when an
+                                                        unknown printer took a galley of type and scrambled it to make a type
+                                                        specimen
+                                                        book.
+                                                    </p>
+                                                </li>
+                                                <li class="accordion-item">
+                                                    <a class="accordion-title" href="">
+                                                        Does the price go up as my team gets larger?
+                                                    </a>
+                                                    <p class="accordion-content">
+                                                        <img src="assets/img/Event/3.jpg" alt="">
+                                                        Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                        industry. Lorem
+                                                        Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                        when an
+                                                        unknown printer took a galley of type and scrambled it to make a type
+                                                        specimen
+                                                        book.
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                    </ul>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Accardion end -->

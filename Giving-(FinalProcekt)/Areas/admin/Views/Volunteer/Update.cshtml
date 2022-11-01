@@ -1,0 +1,68 @@
+﻿@model Volunteer
+@{ ViewData["Title"] = "Update";
+                Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+@{
+    if (TempData["Erroor"] != null)
+    {
+        <div class="col-lg-3 alert alert-danger">
+            <p>@(TempData["Erroor"]as string)</p>
+        </div>
+        TempData["Erroor"] = null;
+    }
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form asp-area="Admin" asp-controller="Volunteer" asp-action="Update" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label asp-for="@Model.ImageFile">Image</label>
+                    <input class="form-control" asp-for="@Model.ImageFile">
+                    <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Name">Name</label>
+                    <input class="form-control" asp-for="@Model.Name">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Description">Description</label>
+                    <textarea id="editor" class="form-control" asp-for="@Model.Description"></textarea>
+                    <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Position">Position</label>
+                    <input id="editor" class="form-control" asp-for="@Model.Position">
+                    <span asp-validation-for="@Model.Position" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Experience">Experience</label>
+                    <input id="editor" class="form-control" asp-for="@Model.Experience">
+                    <span asp-validation-for="@Model.Experience" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.DonaterTitle">DonaterTitle</label>
+                    <input id="editor" class="form-control" asp-for="@Model.DonaterTitle">
+                    <span asp-validation-for="@Model.DonaterTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.DonaterCount">DonaterCount</label>
+                    <input id="editor" class="form-control" asp-for="@Model.DonaterCount">
+                    <span asp-validation-for="@Model.DonaterCount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.VoluteerTitle">VoluteerTitle</label>
+                    <input id="editor" class="form-control" asp-for="@Model.VoluteerTitle">
+                    <span asp-validation-for="@Model.VoluteerTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.VoluteerCount">VoluteerCount</label>
+                    <input id="editor" class="form-control" asp-for="@Model.VoluteerCount">
+                    <span asp-validation-for="@Model.VoluteerCount" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-dark" asp-area="admin" asp-controller="Volunteer" asp-action="Index">Back to List</button>
+
+            </form>
+        </div>
+    </div>
+</div>

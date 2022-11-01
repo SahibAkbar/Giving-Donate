@@ -1,0 +1,58 @@
+﻿@model Donate
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center my-4">
+        @{
+            if (TempData["CommentError"] != null)
+            {
+                <p style="font-size: 20px !important;" class="alert alert-danger col-lg-10 text-center">@TempData["CommentError"]</p>
+
+                TempData["CommentError"] = null;
+            }
+        }
+        <div class="col-lg-10 m-5">
+            <div class="card text-center">
+                <div class="card-header">
+                    <span style="font-size: 24px !important;" class="font-weight-bold text-warning">@Model.FName  @Model.LName</span>
+                </div>
+                @*<div style="width: 100% !important; height: auto !important;">
+                    <img style="width:auto" class="card-img-top" src="~/Uploads/@Model.Image" alt="Image">
+                </div>*@
+                @*<div class="card-body">
+                        <h5 class="badge-pill badge-warning card-title p-2 w-25" style="color: white !important;">Comments - @Model.Comments.Count</h5>
+                    </div>
+                    <div class="card-footer text-muted">
+                        @Model.CreatedDate.ToString("d MMMM yyyy");
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-lg-10 p-3">
+            <p class="text-facebook" style="text-align: center !important; font-size: 24px !important; font-weight: 600 !important;">Info</p>
+            <div class="d-flex p-3 shadow-sm" style="border-radius: 10px !important;">
+                @*<img class="col-lg-3 w-25" style="height: 100%;" src="~/Uploads/@(Model.Image==null?"default-avatar.png":Model.Image)" alt="Image" />*@
+                <div class="d-flex flex-column justify-content-center col-lg-9">
+                    <h4>@Model.FName - @Model.LName </h4>
+                    <p>Content - @Model.Phone</p>
+                    <p>Address - @Model.Address</p>
+                    <p>Not - @Model.Not</p>
+                    @foreach (var item in Model.DonatePrices)
+                    {
+                        <p>Price - @item.Priceee.Money</p>
+
+                    }
+
+                    <p>CreatedDate - @Model.CreatedDate</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 p-3">
+            <a type="submit" class="btn btn-dark" asp-area="admin" asp-controller="Donate" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+

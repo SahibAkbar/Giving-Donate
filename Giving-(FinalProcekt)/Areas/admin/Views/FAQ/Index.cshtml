@@ -1,0 +1,102 @@
+﻿@*@model List<FAQ>
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-primary mb-3" asp-area="admin" asp-controller="FAQ" asp-action="Create">Create</a>
+        </div>
+        <div class="col-lg-12">
+            <table class="table">
+                <thead style="text-align:center;">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Content</th>
+                        <th scope="col"><i class="icon-note menu-icon"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i < Model.Count + 1; i++)
+                    {
+        <tr>
+            <th style="vertical-align:middle;" scope="row">@i</th>
+            <td>@Model[i - 1].Title</td>
+            <td>@Html.Raw(Model[i - 1].Content != null && Model[i - 1].Content.Length > 20 ? Model[i - 1].Content.Substring(0, 20) + "..." : Model[i - 1].Content)</td>
+            <td>
+                <a class="btn btn-success" asp-area="admin" asp-controller="FAQ" asp-action="Update" asp-route-id="@Model[i-1].Id">Update</a>
+                <a class="btn btn-danger" asp-area="admin" asp-controller="FAQ" asp-action="Delete" asp-route-id="@Model[i-1].Id" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>*@
+
+@model List<FAQ>
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">FAQ</h4>
+                <a class="btn btn-primary mb-3 px-5" asp-area="Admin" asp-controller="FAQ" asp-action="Create">Create New FAQ</a>
+                @{ if (TempData["FAQError"] != null)
+                    {
+        <p style="font-size: 20px !important;" class="alert alert-danger">@TempData["FAQError"]</p> TempData["FAQError"] = null;
+    } }
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th class="tableTrCustom">
+                                    #
+                                </th>
+                                <th class="tableTrCustom">
+                                    Title
+                                </th>
+                                <th class="tableTrCustom">
+                                    Content
+                                </th>
+                                <th class="tableTrCustom">
+                                    Edit
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int counter = 0;
+                                foreach (var item in Model)
+                                {
+                                    counter++;
+                    <tr>
+                        <td style="font-size: 18px !important; font-weight: 500 !important;">
+                            @counter
+                        </td>
+                        <td style="font-size: 18px !important; font-weight: 500 !important;">
+                            @*@(item.Title.Length > 20? item.Title.Substring(0,20)+"...": item.Title)*@
+                            @item.Title
+                        </td>
+                        <td style="width: 250px !important; font-size: 18px !important; font-weight: 500 !important;">
+                            @Html.Raw(item.Content.Length > 50 ? item.Content.Substring(0, 50) + "..." : item.Content)
+                        </td>
+
+                        <td>
+                            <a class="mb-2 w-100 btn-sm btn btn-warning" asp-route-id="@item.Id" asp-area="Admin" asp-controller="FAQ" asp-action="Update"><i class="fas fa-edit"></i></a>
+                            <br>
+                            <a class="w-100 btn-sm btn btn-danger" asp-route-id="@item.Id" asp-area="Admin" asp-controller="FAQ" asp-action="Delete" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+ } }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

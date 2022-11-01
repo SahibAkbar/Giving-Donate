@@ -1,0 +1,123 @@
+﻿@model VmCauses
+@{
+    ViewData["Title"] = "Index";
+}
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="Causes" asp-action="Index">Causes</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Causes list start -->
+<section>
+    <div class="causes">
+        @{
+            foreach (var item in Model.Causes)
+            {
+                
+                <div class="causeslist">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="wrap">
+                                    <div class="causes-media">
+                                        <a asp-controller="Causes" asp-action="Detail" asp-route-id="@item.Id">
+                                            <img style="object-fit: cover;" src="~/Uploads/@item.Image" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="circlebar">
+                                        @{
+                                            var y = item.DonatePrices.ToList();
+                                            var p = 0;
+                                            foreach (var item3 in y)
+                                            {
+                                                p += item3.Priceee.Money;
+                                            }
+
+                                            var b = p;
+                                            double z = ((b * 100) / Model.Cause.CauseNeed);
+
+                                            <span> @(z+"%")</span>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8" style="margin-left:8.33%;padding-right: 100px;">
+                                <h3 class="causes-title">
+                                    <a asp-controller="Causes" asp-action="Detail" asp-route-id="@item.Id">@item.Title</a>
+                                </h3>
+                                <div class="causes-ads">
+                                    <span class="local">
+                                        <i class="fas fa-map-marker"></i>
+                                        @item.Address
+                                    </span>
+                                    <span class="date">
+                                        <i class="fa fa-calendar-check"></i>
+                                        @item.CreatedDate.ToString("mmmm/dd/yyyy")
+                                    </span>
+                                </div>
+                                <div class="desc">
+                                    <p>@(item.Content!= null && item.Content.Length > 200 ? item.Content.Substring(0, 200) + "  ... " : item.Content)</p>
+                                </div>
+                                <div class="causes-statusbar">
+                                        @{
+                                           var w = item.DonatePrices.ToList();
+                                           var j = 0;
+                                           foreach (var item2 in w)
+                                           {
+                                               j += item2.Priceee.Money;
+                                           }
+                                            var a = j;
+                                            double r = ((a * 100) / Model.Cause.CauseNeed);
+                                            <div class="bar" style="width: @(r+"%") !important"></div>
+                                        }
+                                </div>
+                                <div class="text">
+                                    <span class="result">
+                                        @{
+                                            var ay = item.DonatePrices.ToList();
+                                            var ap = 0;
+                                            foreach (var item3 in ay)
+                                            {
+                                                ap += item3.Priceee.Money;
+                                            }
+                                            var ab = ap;
+                                            <strong>$@ap</strong>
+                                        }
+
+                                        <br> donated
+                                    </span>
+                                    <span class="goal">
+                                        <strong>$@item.CauseNeed <br> to go</strong>
+                                    </span>
+                                </div>
+                                <a class="batn" asp-controller="Causes" asp-action="Detail" asp-route-id="@item.Id">Donate</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+    <div class="buttonToogle" style="display: none;">
+        <a href="javascript:;" class="showMore">Show More</a>
+    </div>
+</section>
+<!-- Causes list end -->

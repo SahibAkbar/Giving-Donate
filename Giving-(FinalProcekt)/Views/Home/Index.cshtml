@@ -1,0 +1,328 @@
+﻿@model VmHome
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Banner start -->
+<article class="slider">
+
+    @foreach (var item in Model.HomeSliders)
+    {
+        <section class="slide">
+            <img src="~/Uploads/@item.Image" alt="">
+            <div class="slide-content one">
+                <div class="context">
+                    <div class="text">
+                        <h1>@item.Title </h1>
+                        <p>@item.SubTitle</p>
+                        <a asp-controller="Causes" asp-action="Index">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    @*<section class="slide">
+            <img src="assets/img/slider/banner-slider1.jpg" alt="">
+            <div class="slide-content one">
+                <div class="context">
+                    <div class="text">
+                        <h1>Save the Life </h1>
+                        <p>Help People for their needs all over the world!</p>
+                        <a href="#">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <img src="assets/img/slider/banner-slider2.jpg" alt="">
+            <div class="slide-content two">
+                <div class="context">
+                    <div class="text">
+                        <h1>Help us <span>to save</span> <br> The <span>homeless</span> people </h1>
+                        <p>All of our afford can bring back the life</p>
+                        <a href="#">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+
+    <nav class="slider-nav">
+        <span class="prev-slide"></span>
+        <span class="next-slide"></span>
+    </nav>
+
+</article>
+<!-- Banner End -->
+<div class="wpb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="pens">
+                <div class="left">
+                    <h3>
+                        <a href="#">Providing pens for children</a>
+                    </h3>
+                    <ul class="event-meta">
+                        <li class="event-local">
+                            <i class="fas fa-map-marker-alt"></i> 1900 W. Field Court, Lake Forest
+                        </li>
+                        <li class="event-date">
+                            <i class="fas fa-calendar-alt"></i> Mar 18, 3 AM
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Organization Memmber Start -->
+<section>
+    <div class="memmber">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="u-fade-type-left js-scroll-trigger">
+                        <div class="content">
+                            <div class="inner">
+                                <div class="wraper">
+                                    <div class="const">
+                                        <h3>@Model.About.Title</h3>
+                                        <p>
+                                            @Model.About.SubTitle
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="button">
+                                    <a asp-controller="About" asp-action="Index" asp-route-id="@Model.About.Id">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="u-fade-type-right js-scroll-trigger">
+                        <div class="memmber-image">
+                            <img src="~/Uploads/@Model.About.Image" alt="">
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Organization Memmber End -->
+<!-- Our Causes Start -->
+<section>
+    <div class="our-causes">
+        <div class="u-fade-type-down js-scroll-trigger">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>OUR <em>CAUSES</em></h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="owl-carousel owl-theme">
+                            @{
+                                foreach (var item in Model.Causes)
+                                {
+                                    <div class="item" style=" max-width: 100%">
+                                        <div class="post">
+                                            <img style=" height: 235px; object-fit: cover;" src="~/Uploads/@item.Image" alt="">
+                                            <div class="datetime">
+                                                <span class="datetime-inner">
+                                                    @item.CreatedDate.ToString("dd / MMM")
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="post-header">
+                                            @*<div class="meta">
+                                                <ul class="archive">
+                                                    <li class="view">
+                                                        <i class="far fa-eye"></i>
+                                                        <span>0</span>
+                                                    </li>
+                                                    <li class="heart">
+                                                        <i class="far fa-heart"></i>
+                                                        <span>0</span>
+                                                    </li>
+                                                    <li class="comment">
+                                                        <i class="far fa-comment"></i>
+                                                        <span>0</span>
+                                                    </li>
+                                                    <li class="author">
+                                                        Written by <a href="#">admin</a>
+                                                    </li>
+                                                </ul>
+                                            </div>*@
+                                            <h1 class="title">
+                                                <a asp-controller="Causes" asp-action="Detail" asp-route-id="@item.Id">@(item.Title!= null && item.Title.Length > 21 ? item.Title.Substring(0, 21) + "..." : item.Title)</a>
+                                            </h1>
+                                        </div>
+                                        <div class="post-content">
+                                            <p>@(item.Content!= null && item.Content.Length > 121 ? item.Content.Substring(0, 121) + "..." : item.Content)</p>
+                                        </div>
+                                        <a class="post-btn" asp-controller="Causes" asp-action="Detail" asp-route-id="@item.Id">Read more...</a>
+                                    </div>
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+<!-- Our Causes End -->
+<!-- Heart to heart start -->
+<section>
+    <div class="parallax">
+        <div class="overlay" style="background-image:url('/Uploads/@Model.Cause.Image')">
+            <div class="wpb-wraper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 left u-fade-type-left js-scroll-trigger">
+                            <div class="content">
+                                <h3>@Model.Cause.Title</h3>
+                                <p>@Model.Cause.Content</p>
+                                <div class="statusbar">
+                                    @{
+                                        var w = Model.Cause.DonatePrices.ToList();
+                                        var j = 0;
+                                        foreach (var item2 in w)
+                                        {
+                                            j += item2.Priceee.Money;
+                                        }
+                                        var a = j;
+                                        double r = ((a * 100) / Model.Cause.CauseNeed);
+                                        <div class="bar" style="width: @(r+"%") !important"></div>
+                                    }
+                                </div>
+                                <div class="text">
+                                    <h4>
+                                        to go <span>$@Model.Cause.CauseNeed</span>
+                                    </h4>
+                                    <a asp-controller="Causes" asp-action="Detail" asp-route-id="@Model.Cause.Id">Donate</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 right u-fade-type-right js-scroll-trigger">
+                            <img src="~/Uploads/@Model.Cause.Image" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Heart to heart End -->
+<!-- Our volunters start -->
+<section>
+    <div class="volunteers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="content u-fade-type-up js-scroll-trigger">
+                        <h3 class="title-h">OUR <em>TEAM</em></h3>
+                        <p class="title-p">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                        <a asp-controller="Team" asp-action="Index">Go to the team</a>
+                    </div>
+                    <div class="team u-fade-type-down js-scroll-trigger">
+                        <div class="container">
+                            <div class="row">
+                                @{
+                                    foreach (var item in Model.Volunteers)
+                                    {
+                                        <div class="item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                            <div class="volunteer-inner">
+                                                <div class="thumb-wrap">
+                                                    <img src="~/Uploads/@item.Image" alt="">
+                                                    <div class="ciricle-wrap">
+                                                        <div class="ciricle-inner">
+                                                            <div class="pos-rev">
+                                                                <span>@item.Experience</span> years exp
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="intro-wrap">
+                                                    <h3>@item.Name</h3>
+                                                    <p>@item.Position</p>
+                                                    <a asp-controller="Team" asp-action="Detail" asp-route-id="@item.Id">View profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Our volunters end -->
+<!-- Help start -->
+<section>
+    <div class="help">
+        <div class="vc-help">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-12 col-md-7  u-fade-type-right js-scroll-trigger ">
+                        <div class="content">
+                            <h2>They <br> <b>NEED</b> <br>your <br><em><b>HELP...</b></em></h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-12 col-md-5 u-fade-type-left js-scroll-trigger">
+                        @{
+                            if (TempData["MessageError"] != null)
+                            {
+                                <p style="font-size: 20px !important;" class="alert alert-danger text-danger text-center">@TempData["MessageError"]</p>
+                                TempData["MessageError"] = null;
+                            }
+                            if (TempData["MessageSuccess"] != null)
+                            {
+                                <p style="font-size: 20px !important; background-color: #abd47459 !important; margin-left: 69px;" class="alert alert-success text-success text-center">@TempData["MessageSuccess"]</p>
+                                TempData["MessageSuccess"] = null;
+                            }
+                        }
+                        <form asp-controller="Home" asp-action="SendMessage" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-help">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control brd" id="exampleFormControlInput1" placeholder="name" asp-for="@Model.Contact.Name">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="email" asp-for="@Model.Contact.Email">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="phone" asp-for="@Model.Contact.Phone">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="message" asp-for="@Model.Contact.Message"></textarea>
+                                </div>
+                                <div class="col-md-12" style="text-align: end;">
+                                    <a href="#">
+                                        <input class="btn btn-primary" type="submit" value="Send Now">
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Help end -->

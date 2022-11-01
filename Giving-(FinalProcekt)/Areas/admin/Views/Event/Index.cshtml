@@ -1,0 +1,157 @@
+﻿@*@model List<Event>
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <a class="btn btn-primary mb-3" asp-area="admin" asp-controller="Event" asp-action="Create">Create</a>
+            </div>
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead style="text-align:center;">
+                        <tr>
+                            <th style="text-align:center" scope="col">#</th>
+                            <th style="text-align:center" scope="col">Image</th>
+                            <th style="text-align:center" scope="col">Title</th>
+                            <th style="text-align:center" scope="col">Content</th>
+                            <th style="text-align:center" scope="col">Address</th>
+                            <th style="text-align:center" scope="col">IframeLink</th>
+                            <th style="text-align:center" scope="col">CreatedDate</th>
+                            <th style="text-align:center" scope="col">TagEvent</th>
+                            <th style="text-align:center" scope="col"><i class="icon-note menu-icon"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 1; i < Model.Count + 1; i++)
+                        {
+                        <tr style="position:relative">
+                            <th scope="row" style="vertical-align:middle;">@i</th>
+                            <td><img src="~/Uploads/@Model[i-1].Image" style="width: 100px" alt="Alternate Text" /></td>
+                            <td style="text-align:center">@Model[i - 1].Title</td>
+                            <td style="text-align:center">@(Model[i - 1].Content != null && Model[i - 1].Content.Length > 50 ? Model[i - 1].Content.Substring(0, 50) + " ... " : Model[i - 1].Content)</td>
+                            <td style="text-align:center">@Model[i - 1].Address</td>
+                            <td style="text-align:center">@(Model[i - 1].IframeLink != null && Model[i - 1].IframeLink.Length > 50 ? Model[i - 1].IframeLink.Substring(0, 50) + " ... " : Model[i - 1].IframeLink)</td>
+                            <td style="text-align:center">@Model[i - 1].CreatedDate.ToString("MMMM dd, yyyy")</td>
+                            <td data-field="Tag" class="datatable-cell">
+                                <span style="width: 146px;">
+                                    @{
+                                        if (Model[i - 1] != null)
+                                        {
+                                            @foreach (var item in Model[i - 1].TagToEvents)
+                                            {
+                                                <div class="font-weight-bolder font-size-lg mb-0">@item?.TagEvent.Name</div>
+                                            }
+                                        }
+                                    }
+                                </span>
+                            </td>
+
+                            <td style="text-align:center">
+                                <a class="btn btn-success" asp-area="admin" asp-controller="Event" asp-action="Update" asp-route-id="@Model[i - 1].Id">Update</a>
+                                <a class="btn btn-warning" asp-area="admin" asp-controller="Event" asp-action="Detail" asp-route-id="@Model[i - 1].Id">Detail</a>
+                                <a class="btn btn-danger" asp-area="admin" asp-controller="Event" asp-action="Delete" asp-route-id="@Model[i - 1].Id" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                         }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>*@
+
+
+@model List<Event>
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml"; }
+
+
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center" style="font-size: 35px !important; font-weight: 600 !important; color: #3b579d !important; ">Causes</h4>
+                <a class="btn btn-primary mb-3 px-5" asp-area="Admin" asp-controller="Event" asp-action="Create">Create New <i class="fas fa-plus"></i></a>
+                @{ if (TempData["CauseError"] != null)
+                    {
+                        <p style="font-size: 20px !important;" class="alert alert-danger">@TempData["CauseError"]</p> TempData["CauseError"] = null;
+                    }
+                    if (TempData["CauseError1"] != null)
+                    {
+                        <p style="font-size: 20px !important;" class="alert alert-danger">@TempData["CauseError1"]</p> TempData["CauseError1"] = null;
+                    } }
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th class="tableTrCustom">
+                                    #
+                                </th>
+                                <th class="tableTrCustom">
+                                    Image
+                                </th>
+                                <th class="tableTrCustom">
+                                    Title
+                                </th>
+                                <th class="tableTrCustom">
+                                    Tag Name
+                                </th>
+                                <th class="tableTrCustom">
+                                    Created Date
+                                </th>
+                                <th class="tableTrCustom">
+                                    Edit
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int counter = 0;
+                                foreach (var item in Model)
+                                {
+                                    counter++;
+                                    <tr>
+                                        <td style="font-size: 18px !important; font-weight: 500 !important;">
+                                            @counter
+                                        </td>
+                                        <td class="py-1" style=" width: 300px !important; height: 150px !important;">
+                                            <img style="border-radius: unset !important; width: 100% !important; height: 100% !important; object-fit: contain !important;" src="~/Uploads/@item.Image" alt="image" />
+                                        </td>
+                                        <td style="font-size: 18px !important; width: 150px; font-weight: 500 !important;">
+                                            @item.Title
+                                        </td>
+                                        
+                                        <td data-field="Tag" class="datatable-cell" style="font-size: 18px;">
+                                            <span style="width: 146px;">
+                                                @{
+                                                    if (item != null)
+                                                    {
+                                                        @foreach (var item1 in item.TagToEvents)
+                                                        {
+                                                            <div class="font-weight-bolder font-size-lg mb-0">@item1?.TagEvent.Name</div>
+                                                        }
+                                                    }
+                                                }
+                                            </span>
+                                        </td>
+                                        <td style="font-size: 18px !important; width: 150px; font-weight: 500 !important;">
+                                            @item.CreatedDate.ToString("MMMM,dd,yyyy")
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <a class="w-100 btn-sm btn btn-facebook" style="font-size:17px;" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Event" asp-action="Detail"><i class="fas fa-eye"></i></a>
+                                            <br />
+                                            <a class="my-2 w-100 btn-sm btn btn-warning" style="font-size:17px;" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Event" asp-action="Update"><i class="fas fa-edit"></i></a>
+                                            <br>
+                                            <a class="w-100 btn-sm btn btn-danger" style="font-size:17px;" asp-route-id="@item.Id" asp-area="Admin" asp-controller="Event" asp-action="Delete" onclick="return confirm('Are you sure?')"><i class="fas fa-trash-alt"></i></a>
+                                        </td>
+                                    </tr>
+                                 } }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

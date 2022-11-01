@@ -1,0 +1,70 @@
+﻿@model List<Donate>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            @*<a class="btn btn-primary mb-3" asp-area="admin" asp-controller="Donate" asp-action="Create">Create</a>*@
+        </div>
+        <div class="col-lg-12">
+            <table class="table">
+                <thead style="text-align:center;">
+                    <tr>
+                        <th style="text-align:center" scope="col">#</th>
+                        <th style="text-align:center" scope="col">First Name</th>
+                        <th style="text-align:center" scope="col">Last Name</th>
+                        <th style="text-align:center" scope="col">Email</th>
+                        <th style="text-align:center" scope="col">Phone</th>
+                        <th style="text-align:center" scope="col">Address</th>
+                        <th style="text-align:center" scope="col">Not</th>
+                        <th style="text-align:center" scope="col">Price</th>
+                        <th style="text-align:center" scope="col">Created Date</th>
+                        <th style="text-align:center" scope="col"><i class="icon-note menu-icon"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 1; i < Model.Count + 1; i++)
+                    {
+                    <tr style="position:relative">
+                        <th scope="row" style="vertical-align:middle;">@i</th>
+                        <td style="text-align:center">@Model[i - 1].FName</td>
+                        <td style="text-align:center">@Model[i - 1].LName</td>
+                        <td style="text-align:center">@Model[i - 1].Email</td>
+                        <td style="text-align:center">@Model[i - 1].Phone</td>
+                        <td style="text-align:center">@Model[i - 1].Address</td>
+                        <td style="text-align:center">@(Model[i - 1].Not != null && Model[i - 1].Not.Length > 30 ? Model[i - 1].Not.Substring(0, 30) + "..." : Model[i - 1].Not)</td>
+                        <td data-field="" class="datatable-cell">
+                            <span style="width: 146px;">
+                                @{
+                                    if (Model[i - 1] != null)
+                                    {
+                                        @foreach (var item in Model[i - 1].DonatePrices)
+                                        {
+                                            <div class="font-weight-bolder font-size-lg mb-0">@item?.Priceee.Money</div>
+                                        }
+                                    }
+                                }
+                            </span>
+                        </td>
+                        <td style="text-align:center">@Model[i - 1].CreatedDate</td>
+                        <td style="text-align:center">
+                            @*<a class="btn btn-success" asp-area="admin" asp-controller="Donate" asp-action="Update" asp-route-id="@Model[i - 1].Id">Update</a>*@
+                            <a class="btn btn-warning" asp-area="admin" asp-controller="Donate" asp-action="Detail" asp-route-id="@Model[i - 1].Id">Detail</a>
+                            <a class="btn btn-danger" asp-area="admin" asp-controller="Donate" asp-action="Delete" asp-route-id="@Model[i - 1].Id" onclick="return confirm('Are you sure?')">Delete</a>
+                            <div class="card-content">
+                                <div class="sweetalert m-t-30">
+                                    @*<button class="btn btn-warning btn sweet-confirm" asp-area="admin" asp-controller="Event" asp-action="Delete" asp-route-id="@Model[i - 1].Id" onclick="confirm('aa')">Sweet Confirm</button>*@
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                     }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,71 @@
+﻿@model VmEvent
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Event content start -->
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="Event" asp-action="Index">Event</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="event-content">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model.Events)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="event-inner">
+                            <div class="event-media">
+                                <a asp-controller="Event" asp-action="Detail" asp-route-id="@item.Id">
+                                    <img src="~/Uploads/@item.Image" alt="">
+                                </a>
+                            </div>
+                            <div class="event-info">
+                                <h3 class="event-title">
+                                    <a asp-controller="Event" asp-action="Detail" asp-route-id="@item.Id">@item.Title</a>
+                                </h3>
+                                <div class="event-desc">
+                                    @(item.Content!= null && item.Content.Length > 200 ? item.Content.Substring(0, 200) + "  ... " : item.Content)
+                                </div>
+                                <ul class="metadata">
+                                    <li class="time">
+                                        <i class="far fa-clock"></i>
+                                        09:00 am 11:00 pm
+                                    </li>
+                                    <li class="local">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        @item.Address
+                                    </li>
+                                    <li class="date">
+                                        <i class="far fa-calendar-alt"></i>
+                                        @item.CreatedDate.ToString("mmmm/dd/yyyy");
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Event content end -->

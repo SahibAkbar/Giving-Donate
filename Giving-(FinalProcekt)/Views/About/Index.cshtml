@@ -1,0 +1,132 @@
+﻿@model VmAbout
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Banner start -->
+<section>
+    <div class="banner">
+        <div class="bg-image" style="background-image: url(/Uploads/@Model.Banner.Image);">
+            <div class="wpb-wraper">
+            </div>
+        </div>
+    </div>
+    <div class="banner-title">
+        <div class="container">
+            <div class="row">
+                <div class="pens">
+                    <div class="left">
+                        <h3>
+                            <a asp-controller="About" asp-action="Index">About</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner End -->
+<!-- WHO ARE WHERE start -->
+<section>
+    <div class="life">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-5 col-lg-5">
+                    <div class="life-image u-fade-type-left js-scroll-trigger">
+                        <img style="max-width:100%; height:100%" src="~/Uploads/@Model.About.Image" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7 col-lg-7">
+                    <div class="content u-fade-type-right js-scroll-trigger">
+                        <div class="inner">
+                            <div class="wraper">
+                                <div class="const">
+                                    <h3>@Model.About.Title</h3>
+                                    <p>@Model.About.SubTitle</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="u-fade-type-down js-scroll-trigger">
+                            <div class="row">
+                                @{ 
+                                    int i = 0;
+
+                                    foreach (var item in Model.AboutOptions)
+                                    {
+                                        i++;
+                                    <div class="col-sm-6" style="margin-bottom: 45px;">
+                                        <div class="left">
+                                            <span>0.@i</span>
+                                            <i class="@item.Icon"></i>
+                                        </div>
+                                        <div class="right">
+                                            <h4>@item.Title</h4>
+                                            <p>@item.Subtitle</p>
+                                        </div>
+                                    </div>
+
+                                        }
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- WHO ARE WHERE End -->
+<!-- About donate section start -->
+<section>
+    <div class="about-donate u-fade-type-down js-scroll-trigger">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 left u-fade-type-left js-scroll-trigger">
+                    <img style="height:100%;object-fit:cover;" src="~/Uploads/@Model.Cause.Image" alt="">
+                </div>
+                <div class="col-md-6 right u-fade-type-right js-scroll-trigger">
+                    <div class="content">
+                        <h3>@Model.Cause.Title</h3>
+                        <p>@Model.Cause.Content</p>
+                        <div class="statusbar">
+                            @*@{
+            var a = ViewBag.Total;
+            double r = ((a * 100) / (double)Model.Cause.CauseNeed);
+            <div class="bar" style="width: @(r+"%")"></div>
+        }*@
+
+                            @{
+                                var w = Model.Cause.DonatePrices.ToList();
+                                var j = 0;
+                                foreach (var item2 in w)
+                                {
+                                    j += item2.Priceee.Money;
+                                }
+                                var a = j;
+                                double r = ((a * 100) / Model.Cause.CauseNeed);
+                                <div class="bar" style="width: @(r+"%") !important"></div>
+                            }
+                        </div>
+                        <div class="text">
+                            <h4>
+                                to go <span>@Model.Cause.CauseNeed</span></h4>
+                                <a asp-controller="Causes" asp-action="Detail" asp-route-id="@Model.Cause.Id">Donate</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h3 class="partners-title">OUR <em>PARTNERS</em></h3>
+                </div>
+                @foreach (var item in Model.Partners)
+                    {
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                            <div class="partner-image">
+                                <img src="~/Uploads/@item.Image" alt="">
+                            </div>
+                        </div>
+
+                    }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About donate section End -->
